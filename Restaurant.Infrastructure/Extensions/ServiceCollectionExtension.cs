@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Restaurant.Infrastructure.Persistence.Context;
 
@@ -6,8 +7,9 @@ namespace Restaurant.Infrastructure.Extensions;
 
 public static class ServiceCollectionExtension
 {
-    public static void AddInfrastructure(this IServiceCollection services)
+    public static void AddInfrastructure(this IServiceCollection services , IConfiguration configuration)
     {
-        services.AddDbContext<RestaurantDbContext>();
+        var connectionString = configuration.GetConnectionString("RestaurantDb");
+        services.AddDbContext<RestaurantDbContext>(options => options.UseSqlServer(connectionString));
     }
 }
