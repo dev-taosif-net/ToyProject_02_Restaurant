@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Restaurant.Infrastructure.Persistence;
 using Restaurant.Infrastructure.Persistence.Context;
@@ -11,9 +12,11 @@ using Restaurant.Infrastructure.Persistence.Context;
 namespace Restaurant.Infrastructure.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    partial class RestaurantDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250531162601_RId test")]
+    partial class RIdtest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,12 +44,12 @@ namespace Restaurant.Infrastructure.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("RestaurantId")
+                    b.Property<int>("RId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RestaurantId");
+                    b.HasIndex("RId");
 
                     b.ToTable("Dishes");
                 });
@@ -89,7 +92,7 @@ namespace Restaurant.Infrastructure.Migrations
                 {
                     b.HasOne("Restaurant.Domain.Entities.Restaurant", null)
                         .WithMany("Dishes")
-                        .HasForeignKey("RestaurantId")
+                        .HasForeignKey("RId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

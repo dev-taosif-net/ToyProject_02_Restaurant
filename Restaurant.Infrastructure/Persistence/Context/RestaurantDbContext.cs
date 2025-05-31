@@ -1,7 +1,7 @@
-﻿using Restaurant.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Restaurant.Domain.Entities;
 
-namespace Restaurant.Infrastructure.Persistence;
+namespace Restaurant.Infrastructure.Persistence.Context;
 
 public class RestaurantDbContext : DbContext
 {
@@ -17,8 +17,7 @@ public class RestaurantDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
-        modelBuilder.Entity<Domain.Entities.Restaurant>()
-            .OwnsOne(x => x.Address);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(RestaurantDbContext).Assembly);
+        
     }
 }
