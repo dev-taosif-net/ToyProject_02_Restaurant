@@ -3,10 +3,10 @@ using Restaurant.Domain.Entities;
 
 namespace Restaurant.Infrastructure.Persistence.Context;
 
-public class RestaurantDbContext : DbContext
+internal class RestaurantDbContext : DbContext
 {
-    public DbSet<Domain.Entities.Restaurant> Restaurants { get; set; } = null!;
-    public DbSet<Dish> Dishes { get; set; } = null!;
+    internal DbSet<Domain.Entities.Restaurant> Restaurants { get; set; } = null!;
+    internal DbSet<Dish> Dishes { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
