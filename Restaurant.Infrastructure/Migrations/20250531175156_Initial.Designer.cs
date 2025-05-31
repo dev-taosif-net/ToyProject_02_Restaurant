@@ -11,8 +11,8 @@ using Restaurant.Infrastructure.Persistence.Context;
 namespace Restaurant.Infrastructure.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20250531174616_asd")]
-    partial class asd
+    [Migration("20250531175156_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,7 +36,7 @@ namespace Restaurant.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("KiloCalories")
+                    b.Property<int>("KiloCalories")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
