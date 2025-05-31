@@ -1,4 +1,5 @@
 using Restaurant.Infrastructure.Extensions;
+using Restaurant.Infrastructure.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,12 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+var scope = app.Services.CreateScope();
+{
+    var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>();
+    await seeder.Seed();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

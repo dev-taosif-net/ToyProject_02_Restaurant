@@ -12,6 +12,5 @@ internal class RestaurantDbContext(DbContextOptions<RestaurantDbContext> options
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(RestaurantDbContext).Assembly);
-        
     }
 }
