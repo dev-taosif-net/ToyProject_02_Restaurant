@@ -3,12 +3,13 @@ using Restaurant.Application.Interfaces;
 
 namespace Restaurant.API.Controllers;
 
+[Route("api/[controller]")]
 [ApiController]
-[Route("api/{controller}")]
 public class RestaurantController(IRestaurantService service) : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult>   GetAll()
+    [Route("GetAll")]
+    public async Task<IActionResult> GetAll()
     {
         return Ok(await service.GetAllRestaurantsAsync());
     }
