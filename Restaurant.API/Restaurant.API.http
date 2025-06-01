@@ -4,3 +4,7 @@
 GET {{Restaurant.API_HostAddress}}/api/restaurant/GetAll
 
 ###
+
+GET {{Restaurant.API_HostAddress}}/api/restaurant/GetById/1
+
+###

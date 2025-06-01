@@ -11,4 +11,10 @@ public class RestaurantService(IRestaurantRepository repository , ILogger<Restau
         logger.LogInformation("Get all restaurants");
         return repository.GetAllAsync();
     }
+
+    public Task<Domain.Entities.Restaurant?> GetRestaurantByIdAsync(int id)
+    {
+        logger.LogInformation("Get restaurant by id: {Id}", id);
+        return repository.GetByIdAsync(id);
+    }
 }
