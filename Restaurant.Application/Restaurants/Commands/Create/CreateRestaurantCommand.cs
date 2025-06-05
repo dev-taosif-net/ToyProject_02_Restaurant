@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using Restaurant.Application.Services.Dish.Dtos;
+using MediatR;
 
-namespace Restaurant.Application.Services.Restaurant.Dtos;
+namespace Restaurant.Application.Restaurants.Commands.Create;
 
-public class CreateRestaurantDto
+public class CreateRestaurantCommand : IRequest<int>
 {
     public string Name { get; set; } = null!;
     public string Description { get; set; } = null!;
@@ -17,9 +17,7 @@ public class CreateRestaurantDto
     public string? Street { get; set; }
     public string? PostalCode { get; set; }
     
-    public List<CreateDishDto?> Dishes { get; set; } = [];
-
-    public static Domain.Entities.Restaurant ToEntity(CreateRestaurantDto dto)
+    public static Domain.Entities.Restaurant ToEntity(CreateRestaurantCommand dto)
     {
         return new Domain.Entities.Restaurant()
         {
@@ -35,14 +33,12 @@ public class CreateRestaurantDto
                 City = dto.City,
                 PostalCode = dto.PostalCode,
             },
-            Dishes = dto.Dishes.Select(CreateDishDto.ToEntity).ToList()
-
+            
         };
     }
-    
 }
 
-public class CreateRestaurantDtoValidator : AbstractValidator<CreateRestaurantDto>
+public class CreateRestaurantDtoValidator : AbstractValidator<CreateRestaurantCommand>
 {
     public CreateRestaurantDtoValidator()
     {

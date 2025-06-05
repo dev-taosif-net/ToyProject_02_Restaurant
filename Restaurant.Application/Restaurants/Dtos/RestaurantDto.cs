@@ -1,6 +1,4 @@
-﻿using Restaurant.Application.Services.Dish.Dtos;
-
-namespace Restaurant.Application.Services.Restaurant.Dtos;
+﻿namespace Restaurant.Application.Services.Restaurant.Dtos;
 
 public class RestaurantDto
 {
@@ -13,8 +11,6 @@ public class RestaurantDto
     public string? Street { get; set; }
     public string? PostalCode { get; set; }
     
-    public List<DishDto?> Dishes { get; set; } = [];
-
     public static RestaurantDto? FromEntity(Domain.Entities.Restaurant? restaurant)
     {
         if (restaurant is null)
@@ -32,7 +28,6 @@ public class RestaurantDto
             City = restaurant?.Address?.City,
             Street = restaurant?.Address?.Street,
             PostalCode = restaurant?.Address?.PostalCode,
-            Dishes = restaurant?.Dishes?.Select(DishDto.FromEntity).ToList() ?? []
         };
         
     }
