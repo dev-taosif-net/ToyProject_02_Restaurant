@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Restaurant.Application.Interfaces;
 using Restaurant.Application.Services;
+using Restaurant.Application.Services.Restaurant;
 
 namespace Restaurant.Application.Extensions;
 

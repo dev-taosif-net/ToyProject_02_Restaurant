@@ -1,7 +1,9 @@
-﻿namespace Restaurant.Application.Interfaces;
+﻿using Restaurant.Application.Services.Restaurant.Dtos;
+
+namespace Restaurant.Application.Interfaces;
 
 public interface IRestaurantService
 {
-    Task<IEnumerable<Domain.Entities.Restaurant>>  GetAllRestaurantsAsync();
-    Task<Domain.Entities.Restaurant?> GetRestaurantByIdAsync(int id);
+    Task<IEnumerable<RestaurantDto?>> GetAllRestaurantsAsync();
+    Task<RestaurantDto?> GetRestaurantByIdAsync(int id);
 }
