@@ -1,4 +1,5 @@
-﻿using Restaurant.Application.Services.Dish.Dtos;
+﻿using FluentValidation;
+using Restaurant.Application.Services.Dish.Dtos;
 
 namespace Restaurant.Application.Services.Restaurant.Dtos;
 
@@ -39,4 +40,15 @@ public class CreateRestaurantDto
         };
     }
     
+}
+
+public class CreateRestaurantDtoValidator : AbstractValidator<CreateRestaurantDto>
+{
+    public CreateRestaurantDtoValidator()
+    {
+        RuleFor(x=>x.Name)
+            .NotNull()
+            .Length(5,100)
+            .NotEmpty();
+    }
 }
