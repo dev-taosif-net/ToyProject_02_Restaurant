@@ -6,4 +6,5 @@ public interface IRestaurantService
 {
     Task<IEnumerable<RestaurantDto?>> GetAllRestaurantsAsync();
     Task<RestaurantDto?> GetRestaurantByIdAsync(int id);
+    Task<int> CreateRestaurantAsync(CreateRestaurantDto restaurant);
 }

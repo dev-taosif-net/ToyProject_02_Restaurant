@@ -13,7 +13,7 @@ public class RestaurantDto
     public string? Street { get; set; }
     public string? PostalCode { get; set; }
     
-    public List<DishDto> Dishes { get; set; } = [];
+    public List<DishDto?> Dishes { get; set; } = [];
 
     public static RestaurantDto? FromEntity(Domain.Entities.Restaurant? restaurant)
     {
@@ -32,7 +32,7 @@ public class RestaurantDto
             City = restaurant?.Address?.City,
             Street = restaurant?.Address?.Street,
             PostalCode = restaurant?.Address?.PostalCode,
-            //Dishes = restaurant.Dishes?.Select(d => DishDto.FromEntity(d)).ToList() ?? new List<DishDto>()
+            Dishes = restaurant?.Dishes?.Select(DishDto.FromEntity).ToList() ?? []
         };
         
     }

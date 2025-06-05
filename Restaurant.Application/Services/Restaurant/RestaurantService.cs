@@ -20,4 +20,13 @@ public class RestaurantService(IRestaurantRepository repository , ILogger<Restau
         var restaurant = await repository.GetByIdAsync(id) ;
         return RestaurantDto.FromEntity(restaurant);
     }
+
+    public async Task<int> CreateRestaurantAsync(CreateRestaurantDto obj)
+    {
+        logger.LogInformation("Create new restaurant");
+        var restaurant = CreateRestaurantDto.ToEntity(obj);
+
+        var id= await repository.AddAsync(restaurant);
+        return id;
+    }
 }

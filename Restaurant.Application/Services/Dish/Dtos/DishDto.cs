@@ -7,4 +7,18 @@ public class DishDto
     public string Description { get; set; } = null!;
     public decimal Price { get; set; }
     public int KiloCalories { get; set; } = 0;
+
+    public static DishDto? FromEntity(Domain.Entities.Dish? dish)
+    {
+        if (dish == null) return null;
+        
+        return new DishDto()
+        {
+            Id = dish.Id,
+            Name = dish.Name,
+            Description = dish.Description,
+            Price = dish.Price,
+            KiloCalories = dish.KiloCalories,
+        };
+    }
 }

@@ -1,6 +1,5 @@
 @Restaurant.API_HostAddress = https://localhost:7084
 
-
 GET {{Restaurant.API_HostAddress}}/api/restaurant/GetAll
 
 ###
@@ -8,3 +7,9 @@ GET {{Restaurant.API_HostAddress}}/api/restaurant/GetAll
 GET {{Restaurant.API_HostAddress}}/api/restaurant/GetById/1
 
 ###
+
+###
+GET http://localhost:5036/api/Restaurant/GetById/1
+
+###
+GET http://localhost:5036/api/Restaurant/GetAll
