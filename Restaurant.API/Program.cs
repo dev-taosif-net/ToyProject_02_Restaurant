@@ -1,3 +1,4 @@
+using Restaurant.API.Middlewares;
 using Restaurant.Application.Extensions;
 using Restaurant.Infrastructure.Extensions;
 using Restaurant.Infrastructure.Seeders;
@@ -17,6 +18,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
+builder.Services.AddScoped<ExcetionHandlingMiddleware>();
+
 var app = builder.Build();
 
 var scope = app.Services.CreateScope();
@@ -29,10 +32,11 @@ var scope = app.Services.CreateScope();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
-app.UseSwagger();
-app.UseSwaggerUI();
+app.UseMiddleware<ExcetionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 

@@ -21,14 +21,18 @@ public class RestaurantController(IMediator mediator) : ControllerBase
 
     [HttpGet]
     [Route($"{nameof(GetById)}/{{id}}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById([FromRoute] int id)
     {
-        var res = await mediator.Send(new GetRestaurantByIdQuery(id)) ;
+  
+        var res = await mediator.Send(new GetRestaurantByIdQuery(id));
         if (res is null)
         {
             return NotFound();
         }
         return Ok(res);
+
     }
 
     [HttpPost]
