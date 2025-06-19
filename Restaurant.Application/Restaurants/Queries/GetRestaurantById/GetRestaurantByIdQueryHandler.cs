@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Restaurant.Application.Services.Restaurant;
 using Restaurant.Application.Services.Restaurant.Dtos;
+using Restaurant.Domain.Exceptions;
 using Restaurant.Domain.Repositories;
 
 namespace Restaurant.Application.Restaurants.Queries.GetRestaurantById;
@@ -13,6 +14,7 @@ public class GetRestaurantByIdQueryHandler(IRestaurantRepository repository , IL
     {
         logger.LogInformation("Get restaurant by id: {Id}", request.Id );
         var restaurant = await repository.GetByIdAsync(request.Id) ;
+        if ( restaurant == null ) throw new NotFoundException("Restaurant", request.Id.ToString());
         return RestaurantDto.FromEntity(restaurant);
     }
 }
